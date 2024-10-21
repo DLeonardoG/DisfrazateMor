@@ -659,9 +659,9 @@
 										"$ref": "AAAAAAGSqvEcjTf1rXw="
 									},
 									"font": "Arial;13;1",
-									"left": 88,
+									"left": 48,
 									"top": 485,
-									"width": 198.77783203125,
+									"width": 229.83056640625,
 									"height": 13,
 									"text": "proveedores"
 								},
@@ -685,9 +685,9 @@
 												"$ref": "AAAAAAGSqvE/TjgAbVA="
 											},
 											"font": "Arial;13;0",
-											"left": 93,
+											"left": 53,
 											"top": 508,
-											"width": 188.77783203125,
+											"width": 219.83056640625,
 											"height": 13
 										},
 										{
@@ -700,9 +700,9 @@
 												"$ref": "AAAAAAGSqvFREjgHaiA="
 											},
 											"font": "Arial;13;0",
-											"left": 93,
+											"left": 53,
 											"top": 523,
-											"width": 188.77783203125,
+											"width": 219.83056640625,
 											"height": 13
 										},
 										{
@@ -715,24 +715,39 @@
 												"$ref": "AAAAAAGSqvFb4TgO7/Q="
 											},
 											"font": "Arial;13;0",
-											"left": 93,
+											"left": 53,
 											"top": 538,
-											"width": 188.77783203125,
+											"width": 219.83056640625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSr8Ue3gFZKHA=",
+											"_parent": {
+												"$ref": "AAAAAAGSqvEcjTf3Dyk="
+											},
+											"model": {
+												"$ref": "AAAAAAGSr8UesQFWG9Y="
+											},
+											"font": "Arial;13;0",
+											"left": 53,
+											"top": 553,
+											"width": 219.83056640625,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 88,
+									"left": 48,
 									"top": 503,
-									"width": 198.77783203125,
-									"height": 53
+									"width": 229.83056640625,
+									"height": 68
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 88,
+							"left": 48,
 							"top": 480,
-							"width": 198.77783203125,
-							"height": 76,
+							"width": 229.83056640625,
+							"height": 91,
 							"nameLabel": {
 								"$ref": "AAAAAAGSqvEcjTf2lnY="
 							},
@@ -1670,7 +1685,7 @@
 									},
 									"font": "Arial;13;1",
 									"left": 256,
-									"top": 621,
+									"top": 613,
 									"width": 212.50146484375,
 									"height": 13,
 									"text": "promociones"
@@ -1696,7 +1711,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 261,
-											"top": 644,
+											"top": 636,
 											"width": 202.50146484375,
 											"height": 13
 										},
@@ -1711,7 +1726,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 261,
-											"top": 659,
+											"top": 651,
 											"width": 202.50146484375,
 											"height": 13
 										},
@@ -1726,7 +1741,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 261,
-											"top": 674,
+											"top": 666,
 											"width": 202.50146484375,
 											"height": 13
 										},
@@ -1741,7 +1756,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 261,
-											"top": 689,
+											"top": 681,
 											"width": 202.50146484375,
 											"height": 13
 										},
@@ -1756,7 +1771,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 261,
-											"top": 704,
+											"top": 696,
 											"width": 202.50146484375,
 											"height": 13
 										},
@@ -1771,21 +1786,21 @@
 											},
 											"font": "Arial;13;0",
 											"left": 261,
-											"top": 719,
+											"top": 711,
 											"width": 202.50146484375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 256,
-									"top": 639,
+									"top": 631,
 									"width": 212.50146484375,
 									"height": 98
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 256,
-							"top": 616,
+							"top": 608,
 							"width": 212.50146484375,
 							"height": 121,
 							"nameLabel": {
@@ -2137,7 +2152,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 392,
+									"left": 408,
 									"top": 155,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2154,7 +2169,7 @@
 										"$ref": "AAAAAAGSq5hh9z7zNuM="
 									},
 									"font": "Arial;13;0",
-									"left": 377,
+									"left": 393,
 									"top": 168,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -2189,7 +2204,7 @@
 								"$ref": "AAAAAAGSqsKErGs26nE="
 							},
 							"lineStyle": 2,
-							"points": "392:200;392:176;560:176",
+							"points": "408:200;408:176;560:176",
 							"nameLabel": {
 								"$ref": "AAAAAAGSq5hh9z70LM8="
 							},
@@ -2299,7 +2314,7 @@
 									},
 									"font": "Arial;13;1",
 									"left": 480,
-									"top": 541,
+									"top": 557,
 									"width": 191.05908203125,
 									"height": 13,
 									"text": "promociones_productos"
@@ -2325,7 +2340,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 485,
-											"top": 564,
+											"top": 580,
 											"width": 181.05908203125,
 											"height": 13
 										},
@@ -2340,21 +2355,21 @@
 											},
 											"font": "Arial;13;0",
 											"left": 485,
-											"top": 579,
+											"top": 595,
 											"width": 181.05908203125,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 480,
-									"top": 559,
+									"top": 575,
 									"width": 191.05908203125,
 									"height": 38
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 480,
-							"top": 536,
+							"top": 552,
 							"width": 191.05908203125,
 							"height": 61,
 							"nameLabel": {
@@ -2416,8 +2431,8 @@
 										"$ref": "AAAAAAGSq52TQj+IlHA="
 									},
 									"font": "Arial;13;0",
-									"left": 527,
-									"top": 504,
+									"left": 647,
+									"top": 520,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -2434,7 +2449,7 @@
 								"$ref": "AAAAAAGSqsKErGs26nE="
 							},
 							"lineStyle": 2,
-							"points": "224:224;152:224;152:456;512:456;512:536",
+							"points": "224:224;152:224;152:456;632:456;632:552",
 							"nameLabel": {
 								"$ref": "AAAAAAGSq52TQj+J7QA="
 							},
@@ -2481,7 +2496,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 543,
-									"top": 616,
+									"top": 632,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -2515,7 +2530,7 @@
 								"$ref": "AAAAAAGSq5sqTz9ZOqA="
 							},
 							"lineStyle": 2,
-							"points": "528:597;528:648;469:648",
+							"points": "528:613;528:648;469:648",
 							"nameLabel": {
 								"$ref": "AAAAAAGSq55b6T+sXWs="
 							},
@@ -3712,7 +3727,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 388,
-									"top": 805,
+									"top": 801,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -3729,7 +3744,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 389,
-									"top": 756,
+									"top": 748,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -3763,7 +3778,7 @@
 								"$ref": "AAAAAAGSqzdKzDzYUl4="
 							},
 							"lineStyle": 2,
-							"points": "374:737;374:888",
+							"points": "374:729;374:888",
 							"nameLabel": {
 								"$ref": "AAAAAAGSq99ESUKdAqw="
 							},
@@ -4181,6 +4196,170 @@
 							},
 							"headNameLabel": {
 								"$ref": "AAAAAAGSrTUmiUOw7e0="
+							}
+						},
+						{
+							"_type": "ERDEntityView",
+							"_id": "AAAAAAGSr8WksQFfFRE=",
+							"_parent": {
+								"$ref": "AAAAAAGSqrB+s2r+FxM="
+							},
+							"model": {
+								"$ref": "AAAAAAGSr8WksAFdKAA="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGSr8WksQFgxHA=",
+									"_parent": {
+										"$ref": "AAAAAAGSr8WksQFfFRE="
+									},
+									"font": "Arial;13;1",
+									"left": 376,
+									"top": 477,
+									"width": 229.83056640625,
+									"height": 13,
+									"text": "tipos_proveedores"
+								},
+								{
+									"_type": "ERDColumnCompartmentView",
+									"_id": "AAAAAAGSr8WksgFhkNg=",
+									"_parent": {
+										"$ref": "AAAAAAGSr8WksQFfFRE="
+									},
+									"model": {
+										"$ref": "AAAAAAGSr8WksAFdKAA="
+									},
+									"subViews": [
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSr8X+MAFt0dk=",
+											"_parent": {
+												"$ref": "AAAAAAGSr8WksgFhkNg="
+											},
+											"model": {
+												"$ref": "AAAAAAGSr8X+EwFq+1k="
+											},
+											"font": "Arial;13;0",
+											"left": 381,
+											"top": 500,
+											"width": 219.83056640625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSr8ZB0QF0APk=",
+											"_parent": {
+												"$ref": "AAAAAAGSr8WksgFhkNg="
+											},
+											"model": {
+												"$ref": "AAAAAAGSr8ZBrQFxsqY="
+											},
+											"font": "Arial;13;0",
+											"left": 381,
+											"top": 515,
+											"width": 219.83056640625,
+											"height": 13
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 376,
+									"top": 495,
+									"width": 229.83056640625,
+									"height": 38
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 376,
+							"top": 472,
+							"width": 229.83056640625,
+							"height": 61,
+							"nameLabel": {
+								"$ref": "AAAAAAGSr8WksQFgxHA="
+							},
+							"columnCompartment": {
+								"$ref": "AAAAAAGSr8WksgFhkNg="
+							}
+						},
+						{
+							"_type": "ERDRelationshipView",
+							"_id": "AAAAAAGSr8uEhgGMLvo=",
+							"_parent": {
+								"$ref": "AAAAAAGSqrB+s2r+FxM="
+							},
+							"model": {
+								"$ref": "AAAAAAGSr8uEhAGIDl8="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAGSr8uEhgGNDN0=",
+									"_parent": {
+										"$ref": "AAAAAAGSr8uEhgGMLvo="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 326,
+									"top": 524,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAGSr8uEhgGMLvo="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAGSr8uEhgGOZGI=",
+									"_parent": {
+										"$ref": "AAAAAAGSr8uEhgGMLvo="
+									},
+									"font": "Arial;13;0",
+									"left": 350,
+									"top": 523,
+									"height": 13,
+									"alpha": 0.5235987755982988,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAGSr8uEhgGMLvo="
+									},
+									"edgePosition": 2
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAGSr8uEhgGP0GQ=",
+									"_parent": {
+										"$ref": "AAAAAAGSr8uEhgGMLvo="
+									},
+									"font": "Arial;13;0",
+									"left": 303,
+									"top": 523,
+									"height": 13,
+									"alpha": -0.5235987755982988,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAGSr8uEhgGMLvo="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAGSqvEcjTf1rXw="
+							},
+							"tail": {
+								"$ref": "AAAAAAGSr8WksQFfFRE="
+							},
+							"lineStyle": 2,
+							"points": "376:515;278:515",
+							"nameLabel": {
+								"$ref": "AAAAAAGSr8uEhgGNDN0="
+							},
+							"tailNameLabel": {
+								"$ref": "AAAAAAGSr8uEhgGOZGI="
+							},
+							"headNameLabel": {
+								"$ref": "AAAAAAGSr8uEhgGP0GQ="
 							}
 						}
 					]
@@ -4881,7 +5060,7 @@
 						"$ref": "AAAAAAGSqrB+s2r9pyw="
 					},
 					"name": "proveedores",
-					"documentation": "La tabla se encarga se establecer los proveedores de los productos correspondientes para realozar los pedidos correspondientes cuando sea necesario",
+					"documentation": "La tabla se encarga se establecer los proveedores de los productos correspondientes para realozar los pedidos correspondientes cuando sea necesario ademas se hace la aclaracion de las divisiones entre los proveedores...",
 					"columns": [
 						{
 							"_type": "ERDColumn",
@@ -4916,6 +5095,20 @@
 							"length": 0,
 							"nullable": true,
 							"unique": true
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSr8UesQFWG9Y=",
+							"_parent": {
+								"$ref": "AAAAAAGSqvEcjDfzQ+I="
+							},
+							"name": "id_tipo_proveedor",
+							"type": "INTEGER",
+							"length": 0,
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAGSr8X+EwFq+1k="
+							}
 						}
 					]
 				},
@@ -6041,6 +6234,70 @@
 								"$ref": "AAAAAAGSrTNlU0OCqcA="
 							},
 							"name": "clasificacion",
+							"type": "VARCHAR",
+							"length": 0,
+							"nullable": true,
+							"unique": true
+						}
+					]
+				},
+				{
+					"_type": "ERDEntity",
+					"_id": "AAAAAAGSr8WksAFdKAA=",
+					"_parent": {
+						"$ref": "AAAAAAGSqrB+s2r9pyw="
+					},
+					"name": "tipos_proveedores",
+					"ownedElements": [
+						{
+							"_type": "ERDRelationship",
+							"_id": "AAAAAAGSr8uEhAGIDl8=",
+							"_parent": {
+								"$ref": "AAAAAAGSr8WksAFdKAA="
+							},
+							"end1": {
+								"_type": "ERDRelationshipEnd",
+								"_id": "AAAAAAGSr8uEhAGJSVw=",
+								"_parent": {
+									"$ref": "AAAAAAGSr8uEhAGIDl8="
+								},
+								"reference": {
+									"$ref": "AAAAAAGSr8WksAFdKAA="
+								}
+							},
+							"end2": {
+								"_type": "ERDRelationshipEnd",
+								"_id": "AAAAAAGSr8uEhQGKo8Q=",
+								"_parent": {
+									"$ref": "AAAAAAGSr8uEhAGIDl8="
+								},
+								"reference": {
+									"$ref": "AAAAAAGSqvEcjDfzQ+I="
+								},
+								"cardinality": "0..*"
+							}
+						}
+					],
+					"documentation": "tipo especifico de proveedor esto hace que los proveedores se puedan separar especificamente entre otros permitiendo una clasificacion mas efectiva",
+					"columns": [
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSr8X+EwFq+1k=",
+							"_parent": {
+								"$ref": "AAAAAAGSr8WksAFdKAA="
+							},
+							"name": "id_tipo_proveedor",
+							"type": "INTEGER",
+							"length": 0,
+							"primaryKey": true
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSr8ZBrQFxsqY=",
+							"_parent": {
+								"$ref": "AAAAAAGSr8WksAFdKAA="
+							},
+							"name": "tipo",
 							"type": "VARCHAR",
 							"length": 0,
 							"nullable": true,
