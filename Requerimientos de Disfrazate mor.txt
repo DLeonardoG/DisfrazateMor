@@ -1,0 +1,114 @@
+Tienda de disfraces
+disfraces
+accesorios
+maquillaje
+productos de mas
+
+GESTION DE ASPECTOS
+empleados
+inventarios
+ventas
+proveedores
+clientes
+compras
+
+50 registros por tabla, 3N
+libre eleccion la cantidad de entidades y demas
+
+100 consultas SQL
+busqueda de datos criticos, estado del inventario
+ventas por tiempos
+compras de proveedores
+costos operativos 
+el desempeno de empleados
+CON JOINS, SUBCONSULTAS, AGRUPACIONES, FILTRADOS
+POR LO MENOS 20 DE LAS CONSULTAS DEBEN DE SUBCONSULTAS O AGREGACIONES AVANZADAS
+COSAS COMPLEJAS
+
+20 procedimientos almacenados
+automaticen tareas
+procesar ventas
+registrar nuevos proveedores o empleados
+descuentos por festivos o fechas 
+evitar rebundancia y con integridad referencial
+
+20 funciones 
+calculos personalizados, transformaciones complicadas 
+calcular stock para rebastecer 
+estimar el costo operativo mensual como hallowen 
+reutilizables y contribuir a la optimizacion
+
+20 eventos 
+de manera automatica para realizar tareas
+generar reportes semanales
+actualizar el estado del inventario
+se deben ejecutar sin interrumpir nada del sistema
+
+20 triggers 
+se generan automaticamente al realizar un cambio en la tabla 
+al hacer una venta se cambia el inventario 
+al modificar salario, registrarlo en un historial
+verificar la disponibilidad antes de una venta
+triggers deben garantizar la integridad de los datos
+
+5 accesos de roles
+restricciones y accesos especificos
+administrador a todo
+vendedor a ventas e inventario 
+encargado de proveedores acceso a compras
+gerente acceso a reportes y control de empleados
+encargado de almacen puede revisar y actualizar los inventarios
+todo gestionado para la integridad de los datos
+
+
+ENTREGA
+repo de github
+- ddl.sql (Creación de base de datos con tabls y relaciones)
+- dml.sql (inserciones de datos)
+- dql_select.sql (Consultas)
+- dql_procedimientos.sql (procedimientos almacenados)
+- dql_funciones.sql (funciones)
+- dql. triggers.sql (triggers)
+- dql. eventos.sql (eventos)
+- Readme.md
+- Diagrama.jpg (Modelo de datos)
+
+el readme debe tener
+- Descripción del Proyecto: Explicación clara y concisa del proyecto "Tienda de disfraces" 
+(O el nombre que le hayan dado a su proyecto). Incluye el propósito de la base de datos y una descripción
+general de las funcionalidades que se han implementado.
+
+- Requisitos del Sistema: Detalla el software necesario para ejecutar los scripts 
+(e.g., MySQL versión X.X, cliente MySQL Workbench, etc.).
+
+- Instalación y Configuración: Instrucciones paso a paso para configurar el entorno, 
+cargar la base de datos y ejecutar los scripts SQL. Asegúrate de incluir: Cómo ejecutar
+el archivo ddl.sql para generar la estructura de la base de datos, Cómo cargar los datos 
+iniciales con el archivo dml.sql, Instrucciones para ejecutar las consultas, procedimientos
+almacenados, funciones, eventos y triggers.
+
+- Estructura de la Base de Datos: Incluir un resumen de las tablas creadas, con una breve
+descripción de su propósito. No es necesario describir cada campo, pero debe quedar claro cómo 
+interactúan las tablas entre sí.
+
+- Ejemplos de Consultas: Proporcionar ejemplos de algunas consultas SQL (básicas y avanzadas) que se 
+pueden ejecutar en la base de datos, explicando qué información generan.
+
+- Procedimientos, Funciones, Triggers y Eventos: Explicar brevemente la funcionalidad de los procedimientos 
+almacenados, funciones, triggers y eventos creados. Incluir ejemplos de cómo se pueden usar en el contexto del sistema.
+
+- Roles de Usuario y Permisos: Describir los 5 roles de usuario creados en el sistema, junto con los permisos 
+asignados a cada uno. Incluir instrucciones sobre cómo crear usuarios en MySQL y cómo asignarles los roles 
+correspondientes.
+
+- Contribuciones: Si el proyecto fue desarrollado en grupo, cada integrante debe indicar qué parte del
+trabajo realizó.
+- Licencia y Contacto: Incluir una sección sobre la licencia del proyecto (opcional) y cómo contactarte en 
+caso de preguntas o problemas con la implementación.
+
+ARCHIVOS SQL 
+- Todos los scripts SQL necesarios deben estar incluidos en las carpetas adecuadas. Los nombres de los 
+archivos deben ser claros y descriptivos.
+
+- Los scripts deben estar bien documentados con comentarios que expliquen el propósito de cada sección, 
+cómo funcionan las consultas o procedimientos, y cualquier otro detalle que facilite su comprensión.

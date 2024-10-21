@@ -1,0 +1,323 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "Tienda de disfraces",
+	"ownedElements": [
+		{
+			"_type": "ERDDataModel",
+			"_id": "AAAAAAGSqrB+s2r9pyw=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "DisfrazateMor",
+			"ownedElements": [
+				{
+					"_type": "ERDDiagram",
+					"_id": "AAAAAAGSqrB+s2r+FxM=",
+					"_parent": {
+						"$ref": "AAAAAAGSqrB+s2r9pyw="
+					},
+					"name": "ERDDiagram1",
+					"documentation": "Se realiza el diagrama de entidad relacion para lograr el resutado esperado...",
+					"ownedViews": [
+						{
+							"_type": "ERDEntityView",
+							"_id": "AAAAAAGSqsKErGs26nE=",
+							"_parent": {
+								"$ref": "AAAAAAGSqrB+s2r+FxM="
+							},
+							"model": {
+								"$ref": "AAAAAAGSqsKEq2s0AlM="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGSqsKErGs3am0=",
+									"_parent": {
+										"$ref": "AAAAAAGSqsKErGs26nE="
+									},
+									"font": "Arial;13;1",
+									"left": 240,
+									"top": 261,
+									"width": 106.58447265625,
+									"height": 13,
+									"text": "disfraces"
+								},
+								{
+									"_type": "ERDColumnCompartmentView",
+									"_id": "AAAAAAGSqsKErGs4iKs=",
+									"_parent": {
+										"$ref": "AAAAAAGSqsKErGs26nE="
+									},
+									"model": {
+										"$ref": "AAAAAAGSqsKEq2s0AlM="
+									},
+									"subViews": [
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSqsLBuGtER+g=",
+											"_parent": {
+												"$ref": "AAAAAAGSqsKErGs4iKs="
+											},
+											"model": {
+												"$ref": "AAAAAAGSqsLBomtBTNI="
+											},
+											"font": "Arial;13;0",
+											"left": 245,
+											"top": 284,
+											"width": 96.58447265625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSqsXS+WtU1gg=",
+											"_parent": {
+												"$ref": "AAAAAAGSqsKErGs4iKs="
+											},
+											"model": {
+												"$ref": "AAAAAAGSqsXS7mtR+3c="
+											},
+											"font": "Arial;13;0",
+											"left": 245,
+											"top": 299,
+											"width": 96.58447265625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSqsXpWGtbzto=",
+											"_parent": {
+												"$ref": "AAAAAAGSqsKErGs4iKs="
+											},
+											"model": {
+												"$ref": "AAAAAAGSqsXpS2tY/Kg="
+											},
+											"font": "Arial;13;0",
+											"left": 245,
+											"top": 314,
+											"width": 96.58447265625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSqsnL9Gtioqk=",
+											"_parent": {
+												"$ref": "AAAAAAGSqsKErGs4iKs="
+											},
+											"model": {
+												"$ref": "AAAAAAGSqsnL52tfi9s="
+											},
+											"font": "Arial;13;0",
+											"left": 245,
+											"top": 329,
+											"width": 96.58447265625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSqsnlg2tplFU=",
+											"_parent": {
+												"$ref": "AAAAAAGSqsKErGs4iKs="
+											},
+											"model": {
+												"$ref": "AAAAAAGSqsnld2tmt2s="
+											},
+											"font": "Arial;13;0",
+											"left": 245,
+											"top": 344,
+											"width": 96.58447265625,
+											"height": 13
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 240,
+									"top": 279,
+									"width": 106.58447265625,
+									"height": 83
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 240,
+							"top": 256,
+							"width": 106.58447265625,
+							"height": 106,
+							"nameLabel": {
+								"$ref": "AAAAAAGSqsKErGs3am0="
+							},
+							"columnCompartment": {
+								"$ref": "AAAAAAGSqsKErGs4iKs="
+							}
+						},
+						{
+							"_type": "ERDEntityView",
+							"_id": "AAAAAAGSqspl8GtvFYA=",
+							"_parent": {
+								"$ref": "AAAAAAGSqrB+s2r+FxM="
+							},
+							"model": {
+								"$ref": "AAAAAAGSqspl8GttYbM="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAGSqspl8Gtw9kg=",
+									"_parent": {
+										"$ref": "AAAAAAGSqspl8GtvFYA="
+									},
+									"font": "Arial;13;1",
+									"left": 456,
+									"top": 269,
+									"width": 106.58447265625,
+									"height": 13,
+									"text": "categorias"
+								},
+								{
+									"_type": "ERDColumnCompartmentView",
+									"_id": "AAAAAAGSqspl8WtxShI=",
+									"_parent": {
+										"$ref": "AAAAAAGSqspl8GtvFYA="
+									},
+									"model": {
+										"$ref": "AAAAAAGSqspl8GttYbM="
+									},
+									"subViews": [
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSqsp8yWt9wxs=",
+											"_parent": {
+												"$ref": "AAAAAAGSqspl8WtxShI="
+											},
+											"model": {
+												"$ref": "AAAAAAGSqsp8u2t6L5w="
+											},
+											"font": "Arial;13;0",
+											"left": 461,
+											"top": 292,
+											"width": 96.58447265625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGSqsqb8muEu+U=",
+											"_parent": {
+												"$ref": "AAAAAAGSqspl8WtxShI="
+											},
+											"model": {
+												"$ref": "AAAAAAGSqsqb52uBEk4="
+											},
+											"font": "Arial;13;0",
+											"left": 461,
+											"top": 307,
+											"width": 96.58447265625,
+											"height": 13
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 456,
+									"top": 287,
+									"width": 106.58447265625,
+									"height": 38
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 456,
+							"top": 264,
+							"width": 106.58447265625,
+							"height": 76,
+							"nameLabel": {
+								"$ref": "AAAAAAGSqspl8Gtw9kg="
+							},
+							"columnCompartment": {
+								"$ref": "AAAAAAGSqspl8WtxShI="
+							}
+						}
+					]
+				},
+				{
+					"_type": "ERDEntity",
+					"_id": "AAAAAAGSqsKEq2s0AlM=",
+					"_parent": {
+						"$ref": "AAAAAAGSqrB+s2r9pyw="
+					},
+					"name": "disfraces",
+					"columns": [
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSqsLBomtBTNI=",
+							"_parent": {
+								"$ref": "AAAAAAGSqsKEq2s0AlM="
+							},
+							"name": "id_disfraz",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSqsXS7mtR+3c=",
+							"_parent": {
+								"$ref": "AAAAAAGSqsKEq2s0AlM="
+							},
+							"name": "nombre",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSqsXpS2tY/Kg=",
+							"_parent": {
+								"$ref": "AAAAAAGSqsKEq2s0AlM="
+							},
+							"name": "descripcion",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSqsnL52tfi9s=",
+							"_parent": {
+								"$ref": "AAAAAAGSqsKEq2s0AlM="
+							},
+							"name": "precio",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSqsnld2tmt2s=",
+							"_parent": {
+								"$ref": "AAAAAAGSqsKEq2s0AlM="
+							},
+							"name": "id_categoria",
+							"length": 0
+						}
+					]
+				},
+				{
+					"_type": "ERDEntity",
+					"_id": "AAAAAAGSqspl8GttYbM=",
+					"_parent": {
+						"$ref": "AAAAAAGSqrB+s2r9pyw="
+					},
+					"name": "categorias",
+					"columns": [
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSqsp8u2t6L5w=",
+							"_parent": {
+								"$ref": "AAAAAAGSqspl8GttYbM="
+							},
+							"name": "id_categoria",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGSqsqb52uBEk4=",
+							"_parent": {
+								"$ref": "AAAAAAGSqspl8GttYbM="
+							},
+							"name": "categoria",
+							"length": 0
+						}
+					]
+				}
+			],
+			"documentation": "La tienda DisfrazateMor consiste en administrar una tienda que contenga todo lo necesario para cumplir con la admiinistracion de una tienda de disfraces..."
+		}
+	]
+}
