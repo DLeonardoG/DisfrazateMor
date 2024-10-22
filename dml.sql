@@ -73,7 +73,7 @@ insert into empleados (nombre, apellido, celular, fecha_inicio, id_cargo) values
 ('Álvaro', 'Reyes', '3100000047', '2026-11-01', 7),
 ('Beatriz', 'Herrera', '3100000048', '2026-12-01', 8),
 ('David', 'Guzmán', '3100000049', '2027-01-01', 9),
-('Sandra', 'Ibarra', '3100000050', '2027-02-01');
+('Sandra', 'Ibarra', '3100000050', '2027-02-01', 10);
 
 insert into usuarios (nombre_usuario, contrasena, id_empleado) values
 ('j.perez', 'password123', 1),
@@ -92,7 +92,7 @@ insert into metodos (metodo) values ('Efectivo'), ('Tarjeta de crédito'), ('Tar
 
 -- proveedores
 
-insert into tipo_proveedores (tipo_proveedor) values ('Mayorista'), ('Minorista'), ('Distribuidor'), ('Fabricante');
+insert into tipos_proveedores (tipo_proveedor) values ('Mayorista'), ('Minorista'), ('Distribuidor'), ('Fabricante');
 
 insert into proveedores (nombre, celular, id_tipo_proveedor) values 
 ('Distribuidora Global S.A.', '5557891234', 1),

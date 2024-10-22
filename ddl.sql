@@ -148,7 +148,7 @@ create table if not exists ventas (
     id_metodo int not null,
     id_cliente int not null,
     id_empleado int not null, 
-    total_venta decimal(10,2) check (total >= 0),
+    total_venta decimal(10,2),
     foreign key (id_metodo) references metodos(id_metodo),
     foreign key (id_cliente) references clientes(id_cliente),
     foreign key (id_empleado) references empleados(id_empleado)

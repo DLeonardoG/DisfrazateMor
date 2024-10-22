@@ -688,7 +688,7 @@ where not exists (
     )
 );
 
--- 93. comparación entre cantidad de ventas y devoluciones por producto.
+-- 93. comparación entre cantidad de ventas y devoluciones por producto. esta no sirve
 select productos.nombre, 
     count(ventas_productos.id_producto) as total_ventas, 
     count(devoluciones.id_producto) as total_devoluciones 
@@ -710,12 +710,12 @@ order by total_vendidos desc;
 select clientes.nombre, clientes.apellido, sum(ventas.total_venta) as total_bajo 
 from clientes 
 join ventas on clientes.id_cliente = ventas.id_cliente 
-where month(ventas.fecha) in (1, 2, 9, 10) -- ejemplo de meses de temporada baja
+where month(ventas.fecha) in (1, 2, 9, 10)
 group by clientes.id_cliente 
 order by total_bajo desc 
 limit 5;
 
--- 96. productos más vendidos en días lluviosos (si se tiene información meteorológica).
+-- 96. productos más vendidos en días lluviosos (si se tiene información meteorológica). esta no sirve
 select productos.nombre, count(ventas_productos.id_producto) as total_vendidos 
 from productos 
 join ventas_productos on productos.id_producto = ventas_productos.id_producto 
@@ -726,7 +726,7 @@ group by productos.id_producto
 order by total_vendidos desc 
 limit 5;
 
--- 97. empleados con mejores evaluaciones de desempeño (si existe un sistema de evaluación).
+-- 97. empleados con mejores evaluaciones de desempeño (si existe un sistema de evaluación). esta no sirve
 select empleados.nombre, empleados.apellido, avg(evaluaciones.puntuacion) as promedio_evaluacion 
 from empleados 
 join evaluaciones on empleados.id_empleado = evaluaciones.id_empleado 
@@ -751,7 +751,7 @@ join promociones on ventas_promocion.id_promocion = promociones.id_promocion
 group by productos.nombre, promociones.descuento 
 order by total_vendidos desc;
 
--- 100. clientes con mayor recurrencia en compras (frecuencia).
+-- 100. clientes con mayor frecuencia en compras.
 select clientes.nombre, clientes.apellido, count(ventas.id_venta) as total_compras 
 from clientes 
 join ventas on clientes.id_cliente = ventas.id_cliente 
