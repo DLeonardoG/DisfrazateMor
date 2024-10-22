@@ -73,6 +73,28 @@ repo de github
 - Readme.md
 - Diagrama.jpg (Modelo de datos)
 
+=================================================================
+
+lunes
+- Diagrama.jpg (Modelo de datos) - L
+- ddl.sql (Creación de base de datos con tablas y relaciones) - L
+- dml.sql (inserciones de datos) - 50/50
+- dql_select.sql (Consultas) - 50/50
+- dql_procedimientos.sql (procedimientos almacenados) - 50/50
+
+martes
+- dql_funciones.sql (funciones) - 50/50
+- dql. triggers.sql (triggers) - 50/50
+- dql. eventos.sql (eventos) - 50/50
+
+miercoles
+- asignar los roles - 50/50
+- Readme.md - 50/50
+
+se dividen todas las tareas 50/50
+
+===================================================================
+
 el readme debe tener
 - Descripción del Proyecto: Explicación clara y concisa del proyecto "Tienda de disfraces" 
 (O el nombre que le hayan dado a su proyecto). Incluye el propósito de la base de datos y una descripción
