@@ -12,7 +12,7 @@ create table if not exists tallas (
 );
 
 -- tipos proveedores - tabla
-create table if not exists tipo_proveedores (
+create table if not exists tipos_proveedores (
     id_tipo_proveedor int primary key auto_increment,
     tipo_proveedor varchar(255) not null unique
 );
@@ -48,7 +48,7 @@ create table if not exists proveedores (
     nombre varchar(125) not null,
     celular char(10) not null unique,
     id_tipo_proveedor int,
-    foreign key (id_tipo_proveedor) references tipo_proveedores(id_tipo_proveedor)
+    foreign key (id_tipo_proveedor) references tipos_proveedores(id_tipo_proveedor)
 );
 
 create table if not exists clasificaciones (
@@ -148,11 +148,12 @@ create table if not exists ventas (
     id_metodo int not null,
     id_cliente int not null,
     id_empleado int not null, 
+    total_venta decimal(10,2) check (total >= 0),
     foreign key (id_metodo) references metodos(id_metodo),
     foreign key (id_cliente) references clientes(id_cliente),
     foreign key (id_empleado) references empleados(id_empleado)
 );
-
+-- poner la cantidad de cada producto
 create table if not exists ventas_productos(
     id_producto int not null, 
 	id_venta int not null, 
