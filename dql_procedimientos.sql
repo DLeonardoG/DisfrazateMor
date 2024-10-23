@@ -1,7 +1,4 @@
--- 1. Registrar una nueva compra
-create procedure registrar_compra(
-	
-);
+
 
 -- 2. Registrar un nuevo proveedor: Un procedimiento para agregar información de nuevos proveedores a la base de datos.
 DELIMITER $$
@@ -22,40 +19,243 @@ call agragar_nuevo_proveedor('Paisas la 36', '3123404945', 2);
 
 select * from proveedores;
 
--- Actualizar el stock de productos: Un procedimiento que actualice la cantidad en la tabla inventario tras realizar una venta o una compra.
+-- 1. **Registrar una nueva categoría de productos**: Procedimiento que permite añadir una nueva categoría a la base de datos.
+DELIMITER $$
+drop procedure registrar_nueva_categoria;
 
--- Registrar una venta: Un procedimiento que inserte una nueva venta, incluyendo la gestión de los productos vendidos y la actualización del stock.
+create procedure registrar_nueva_categoria(
+	nueva_categoria varchar(125)
+)
+begin
+	insert into categorias(categoria)
+    values(nueva_categoria);
+end $$
+DELIMITER ;
 
--- Agregar un nuevo cliente: Un procedimiento que permita insertar un nuevo cliente en la tabla clientes.
+call registrar_nueva_categoria('Belleza');
 
--- Calcular descuentos aplicables: Un procedimiento que calcule y aplique descuentos a una venta en función de las promociones activas.
+select * from categorias;
 
--- Buscar productos por categoría: Un procedimiento que devuelva todos los productos que pertenecen a una categoría específica.
+-- 2. **Actualizar el precio de un producto específico**: Procedimiento que recibe el ID de un producto y un nuevo precio, y actualiza el precio en la base de datos.
 
--- Generar reportes de ventas: Un procedimiento que genere un reporte de ventas por fecha, empleado, o método de pago.
+DELIMITER $$
+create procedure actualizar_precio(
+    p_id_producto int,
+    p_precio decimal(10,2)
+)
+begin
+    update productos
+    set precio = p_precio
+    where id_producto = p_id_producto;
+end $$
+DELIMITER ;
 
--- Eliminar un producto: Un procedimiento que elimine un producto de la base de datos, asegurando que se manejen correctamente las relaciones y dependencias.
+call actualizar_precio(5,100000);
 
--- Listar productos en promoción: Un procedimiento que devuelva todos los productos que están actualmente en promoción.
+select * from productos; 
 
--- Actualizar la información de un proveedor: Un procedimiento que permita actualizar los detalles de un proveedor existente.
+-- 3. **Eliminar un cliente**: Procedimiento que elimina un cliente de la base de datos en función de su ID.
 
--- Registrar un nuevo empleado: Un procedimiento que permita agregar un nuevo empleado a la base de datos.
+drop procedure eliminar_cliente_por_telefono;
 
--- Listar todos los empleados activos: Un procedimiento que devuelva la lista de empleados que han sido contratados y están activos.
+DELIMITER $$
+create procedure eliminar_cliente_por_telefono(
+    c_celular char(10)
+)
+begin
+	 delete from ventas_promocion
+    where id_venta in (
+        select id_venta from ventas where id_cliente = (select id_cliente from clientes where celular = c_celular)
+    );
 
--- Auditar cambios en el inventario: Un procedimiento que registre cambios en el inventario, como ajustes manuales o correcciones de stock.
+	delete from ventas_productos
+    where id_venta in (
+        select id_venta from ventas where id_cliente = (select id_cliente from clientes where celular = c_celular)
+    );
 
--- Consultar el historial de compras de un proveedor: Un procedimiento que devuelva todas las compras realizadas a un proveedor específico.
+	delete from ventas
+    where id_cliente = (select id_cliente from clientes where celular = c_celular);
 
--- Verificar la disponibilidad de productos: Un procedimiento que verifique si hay stock suficiente para un conjunto de productos antes de proceder con una venta.
+    delete from clientes
+    where celular = c_celular;
+end $$
+DELIMITER ;
 
--- Enviar notificaciones de reposición: Un procedimiento que verifique el stock de productos y envíe alertas cuando un producto esté por debajo de un umbral crítico.
+ call eliminar_cliente_por_telefono('3000000001');
+ 
+ select * from clientes;
 
--- Actualizar precios de productos: Un procedimiento que permita modificar el precio de un producto, asegurándose de que se actualicen las tablas relacionadas.
 
--- Registrar una nueva promoción: Un procedimiento que inserte una nueva promoción y asocie las categorías o productos correspondientes.
+-- 4. **Registrar un nuevo método de pago**: Procedimiento que permite agregar un nuevo método de pago, como "Tarjeta de Crédito" o "PayPal".
+DELIMITER $$
+create procedure registrar_metodo_pago(
+    nuevo_metodo varchar(50)
+)
+begin
+    insert into metodos (metodo) 
+    values (nuevo_metodo);
+end $$
+DELIMITER ;
 
--- Eliminar un cliente: Un procedimiento que elimine un cliente de la base de datos, manejando adecuadamente cualquier relación con ventas anteriores.
+CALL registrar_metodo_pago('Nequi');
 
--- Generar un reporte de inventario: Un procedimiento que genere un reporte completo del inventario, mostrando la cantidad de cada producto por talla y categoría.
+select * from metodos;
+
+-- 5. **Actualizar la información de un proveedor**: Procedimiento que permite modificar los datos de contacto de un proveedor existente.
+DELIMITER $$
+CREATE PROCEDURE actualizar_proveedor(
+    p_id_proveedor INT,
+    p_nombre VARCHAR(125),
+    p_celular CHAR(10)
+)
+BEGIN
+    UPDATE proveedores
+    SET nombre = p_nombre,
+        celular = p_celular
+    WHERE id_proveedor = p_id_proveedor;
+END $$
+DELIMITER ;
+CALL actualizar_proveedor(1, 'Nuevo proveedor creado', '3063500002');
+
+-- 6. **Registrar una nueva talla de producto**: Procedimiento que permite añadir una nueva talla disponible para los productos.
+DELIMITER $$
+CREATE PROCEDURE registrar_talla(
+    p_talla VARCHAR(10)
+)
+BEGIN
+    INSERT INTO tallas (talla)
+    VALUES (p_talla);
+END $$
+DELIMITER ;
+CALL registrar_talla('XXXL');
+select * from tallas;
+
+
+-- 7. **Actualizar el stock de un producto específico**: Procedimiento que ajusta manualmente la cantidad en inventario de un producto dado.
+
+-- 8. **Asignar un rol a un empleado**: Procedimiento que actualiza el rol de un empleado en función de su ID.
+DELIMITER $$
+create procedure asignar_rol_empleado(
+    p_id_empleado int,
+    p_id_rol INT
+)
+begin
+    update empleados
+    set id_cargo = (
+        select id_cargo from cargos where id_rol = p_id_rol
+    )
+    WHERE id_empleado = p_id_empleado;
+end $$
+DELIMITER ;
+
+call asignar_rol_empleado(1, 5);
+
+select * from empleados;
+
+-- 9. **Eliminar un producto del inventario**: Procedimiento que permite eliminar un producto del inventario, especificado por su ID.
+drop PROCEDURE eliminar_producto_inventario;
+
+DELIMITER $$
+create procedure eliminar_producto_inventario(
+    p_id_producto int
+)
+begin
+    -- Eliminar referencias en compras_productos
+    delete from compras_productos
+    where id_producto = p_id_producto;
+
+    -- Eliminar referencias en ventas_productos
+    delete from ventas_productos
+    where id_producto = p_id_producto;
+
+    -- Eliminar referencias en productos_tallas
+    delete from productos_tallas
+    where id_producto = p_id_producto;
+
+    -- Eliminar referencias en promociones_productos
+    delete from promociones_productos
+    where id_producto = p_id_producto;
+
+    -- Eliminar el producto de la tabla de inventario
+    delete from inventario
+    where id_producto = p_id_producto;
+
+    -- Finalmente, eliminar el producto de la tabla de productos
+    delete from productos
+    where id_producto = p_id_producto;
+end $$
+DELIMITER ;
+
+call eliminar_producto_inventario(1);
+
+select * from productos;
+
+-- 10. **Cambiar el estado de una promoción (activa/inactiva)**: Procedimiento que permite activar o desactivar promociones en función de su ID.
+
+-- 11. **Registrar un nuevo cliente**: Procedimiento que añade un cliente con sus datos básicos (nombre, apellido, celular).
+DELIMITER $$
+create procedure registrar_nuevo_cliente(
+    p_nombre VARCHAR(125),
+    p_apellido VARCHAR(255),
+    p_celular CHAR(10)
+)
+begin
+    insert into clientes (nombre, apellido, celular)
+    values (p_nombre, p_apellido, p_celular);
+end $$
+DELIMITER ;
+
+call registrar_nuevo_cliente('Juan', 'Pérez', '3000000001');
+
+-- -- 12. **Actualizar el sueldo de un empleado**: Procedimiento que recibe el ID de un empleado y un nuevo sueldo, y actualiza la información en la base de datos.
+drop procedure actualizar_sueldo_cargo;
+
+DELIMITER $$
+create procedure actualizar_sueldo_cargo(
+    p_id_cargo int,
+    p_nuevo_sueldo decimal(10, 2)
+)
+begin
+    update cargos
+    set sueldo = p_nuevo_sueldo
+    where id_cargo = p_id_cargo;
+end $$
+DELIMITER ;
+
+call actualizar_sueldo_cargo(13, 80000000);
+
+select * from cargos;
+
+-- -- 13. **Actualizar el nombre de una categoría**: Procedimiento que cambia el nombre de una categoría existente.
+drop procedure actualizar_nombre_categoria;
+
+DELIMITER $$
+create procedure actualizar_nombre_categoria(
+	c_id_categoria int,
+    c_categoria varchar(255)
+)
+begin
+	update categorias
+    set categoria = c_categoria
+    where id_categoria = c_id_categoria;
+end $$
+
+DELIMITER ;
+
+call actualizar_nombre_categoria(1, 'nueva categoria');
+
+select * from categorias;
+
+-- -- 14. **Añadir una descripción a un producto**: Procedimiento que permite actualizar o añadir una descripción detallada a un producto.
+
+-- -- 15. **Actualizar los datos de contacto de un cliente**: Procedimiento que permite modificar la información de contacto de un cliente.
+
+-- -- 16. **Registrar una nueva clasificación de productos**: Procedimiento para agregar una nueva clasificación (por ejemplo, "Disfraces Infantiles").
+
+-- 17. **Cambiar la contraseña de un usuario**: Procedimiento que permite actualizar la contraseña de un usuario específico.
+
+-- 18. **Verificar la existencia de un producto en inventario**: Procedimiento que recibe un ID de producto y retorna si está disponible o no en el inventario.
+
+-- 19. **Actualizar la fecha de inicio de un empleado**: Procedimiento que modifica la fecha de inicio de un contrato de un empleado específico.
+
+-- 20. **Eliminar un método de pago**: Procedimiento para eliminar un método de pago que ya no se utilice.
