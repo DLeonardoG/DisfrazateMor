@@ -131,6 +131,7 @@ create table if not exists promociones (
 create table if not exists compras_productos (
     id_producto int not null, 
 	id_compra int not null, 
+    id_compra_producto int primary key auto_increment,
     foreign key (id_producto) references productos(id_producto),
     foreign key (id_compra) references compras(id_compra)
 );
@@ -157,9 +158,19 @@ create table if not exists ventas (
 create table if not exists ventas_productos(
     id_producto int not null, 
 	id_venta int not null, 
+    id_venta_producto int primary key auto_increment,
     foreign key (id_producto) references productos(id_producto),
     foreign key (id_venta) references ventas(id_venta)
 );
+
+create table if not exists ventas_productos_tallas(
+    cantidad int default 1, 
+	id_talla int not null, 
+    id_venta_producto int not null,
+    foreign key (id_venta_producto) references ventas_productos(id_venta_producto),
+    foreign key (id_venta) references ventas(id_venta)
+);
+
 
 create table if not exists ventas_promocion(
     id_promocion int not null, 
