@@ -2,18 +2,18 @@ use disfrazateMor;
 
 select count(*) as total_tablas from information_schema.tables where table_schema = 'disfrazateMor';
 
--- 1. listar de todos los productos con su precio y descripción.
+-- 1. listar de todos los productos con su precio y descripcion.
 select nombre, precio, descripcion from productos;
 
 -- 2. cantidad total de productos en el inventario.
 select sum(cantidad_total) as total_inventario from inventario;
 
--- 3. total de ventas realizadas en un día específico.
+-- 3. total de ventas realizadas en un dia específico.
 select count(*) as total_ventas 
 from ventas 
 where date(fecha) = '2024-10-22';
 
--- 4. clientes con compras realizadas en el último mes.
+-- 4. clientes con compras realizadas en el ultimo mes.
 select nombre, apellido, celular 
 from clientes 
 where id_cliente in (
@@ -31,20 +31,20 @@ select empleados.nombre, empleados.apellido, cargos.cargo, cargos.sueldo
 from empleados 
 join cargos on empleados.id_cargo = cargos.id_cargo;
 
--- 7. total de productos vendidos en una venta específica.
+-- 7. total de productos vendidos en una venta especifica.
 select count(*) as total_productos_vendidos 
 from ventas_productos 
 where id_venta = 1;
 
--- 8. promociones activas en una fecha específica.
+-- 8. promociones activas entre dos fechas.
 select nombre, descripcion 
 from promociones 
 where date(fecha_inicio) <= '2024-10-22' and date(fecha_fin) >= '2024-10-22';
 
--- 9. categorías disponibles de productos.
+-- 9. categorias disponibles de productos.
 select categoria from categorias;
 
--- 10. total de ventas por cada método de pago.
+-- 10. total de ventas por cada metodo de pago.
 select metodos.metodo, count(*) as total_ventas 
 from ventas 
 join metodos on ventas.id_metodo = metodos.id_metodo 
@@ -60,13 +60,13 @@ select distinct empleados.nombre, empleados.apellido
 from empleados 
 join ventas on empleados.id_empleado = ventas.id_empleado;
 
--- 13. productos que están agotados en el inventario.
+-- 13. productos que estan agotados en el inventario.
 select productos.nombre 
 from productos 
 join inventario on productos.id_producto = inventario.id_producto 
 where inventario.cantidad_total = 0;
 
--- 14. clientes que han comprado más de una vez.
+-- 14. clientes que han comprado mas de una vez.
 select nombre, apellido, celular 
 from clientes 
 where id_cliente in (
@@ -80,19 +80,19 @@ where id_cliente in (
 select sum(descuento) as total_descuentos 
 from promociones;
 
--- 16. proveedores con más de un tipo de producto.
+-- 16. proveedores con mas de un tipo de producto.
 select proveedores.nombre, count(distinct productos.id_tipo) as total_tipos 
 from proveedores 
 join productos on proveedores.id_proveedor = productos.id_proveedor 
 group by proveedores.nombre 
 having total_tipos > 1;
 
--- 17. total de compras a proveedores en el último año.
+-- 17. total de compras a proveedores en el ultimo año.
 select count(*) as total_compras 
 from compras 
 where year(fecha) = year(now());
 
--- 18. lista de categorías con promociones activas.
+-- 18. lista de categorias con promociones activas.
 select distinct categorias.categoria 
 from categorias 
 join promociones_categorias on categorias.id_categoria = promociones_categorias.id_categoria 
@@ -105,8 +105,8 @@ from productos
 join inventario on productos.id_producto = inventario.id_producto 
 where inventario.cantidad_total < 5;
 
--- 20. lista de empleados y su antigüedad en la empresa.
-select nombre, apellido, datediff(now(), fecha_inicio) as dias_trabajando 
+-- 20. lista de empleados y su antiguedad en la empresa.
+select nombre, apellido, datediff(now(), fecha_inicio) as dias_trabajados 
 from empleados;
 
 -- 21. total de ventas por cada empleado.
@@ -324,14 +324,14 @@ join productos on proveedores.id_proveedor = productos.id_proveedor
 join ventas_productos on productos.id_producto = ventas_productos.id_producto 
 group by proveedores.nombre;
 
--- 51. promedio de ventas por cliente en el último año.
+-- 51. promedio de ventas por cliente en el ultimo ano.
 select clientes.nombre, clientes.apellido, avg(total_venta) as promedio_ventas 
 from clientes 
 join ventas on clientes.id_cliente = ventas.id_cliente 
 where year(ventas.fecha) = year(now()) - 1 
 group by clientes.id_cliente;
 
--- 52. productos más caros vendidos durante promociones.
+-- 52. productos mas caros vendidos durante promociones.
 select productos.nombre, max(productos.precio) as precio_mas_alto 
 from productos 
 join ventas_productos on productos.id_producto = ventas_productos.id_producto 
@@ -347,7 +347,7 @@ where year(ventas.fecha) = year(now())
 group by mes 
 order by mes;
 
--- 54. empleados con el promedio más alto de ventas mensuales.
+-- 54. empleados con el promedio mas alto de ventas mensuales.
 select empleados.nombre, empleados.apellido, avg(ventas.total_venta) as promedio_ventas 
 from empleados 
 join ventas on empleados.id_empleado = ventas.id_empleado 
@@ -363,7 +363,7 @@ join categorias_productos on categorias.id_categoria = categorias_productos.id_c
 join ventas_productos on categorias_productos.id_producto = ventas_productos.id_producto 
 group by categorias.categoria;
 
--- 56. comparación entre ventas con y sin promociones en el último trimestre.
+-- 56. comparación entre ventas con y sin promociones en el ultimo trimestre.
 select 
     case when ventas_promocion.id_promocion is not null then 'Con promoción' else 'Sin promoción' end as tipo_venta, 
     count(*) as total_ventas 
@@ -372,7 +372,7 @@ left join ventas_promocion on ventas.id_venta = ventas_promocion.id_venta
 where ventas.fecha between date_sub(now(), interval 3 month) and now() 
 group by tipo_venta;
 
--- 57. días con mayores ventas en el año.
+-- 57. días con mayores ventas en el ano.
 select date(ventas.fecha) as fecha, sum(ventas.total_venta) as total_ventas 
 from ventas 
 where year(ventas.fecha) = year(now()) 
@@ -380,7 +380,7 @@ group by fecha
 order by total_ventas desc 
 limit 10;
 
--- 58. clientes que gastaron más dinero en el último semestre.
+-- 58. clientes que gastaron mas dinero en el último semestre.
 select clientes.nombre, clientes.apellido, sum(ventas.total_venta) as total_gastado 
 from clientes 
 join ventas on clientes.id_cliente = ventas.id_cliente 
