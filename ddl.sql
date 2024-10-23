@@ -136,6 +136,14 @@ create table if not exists compras_productos (
     foreign key (id_compra) references compras(id_compra)
 );
 
+create table if not exists compras_productos_tallas(
+    cantidad int default 1, 
+	id_talla int not null, 
+    id_compra_producto int not null,
+    foreign key (id_compra_producto) references compras_productos(id_compra_producto),
+    foreign key (id_talla) references tallas(id_talla)
+);
+
 create table if not exists promociones_categorias(
     id_promocion int not null, 
 	id_categoria int not null, 
@@ -168,7 +176,7 @@ create table if not exists ventas_productos_tallas(
 	id_talla int not null, 
     id_venta_producto int not null,
     foreign key (id_venta_producto) references ventas_productos(id_venta_producto),
-    foreign key (id_venta) references ventas(id_venta)
+    foreign key (id_talla) references tallas(id_talla)
 );
 
 
