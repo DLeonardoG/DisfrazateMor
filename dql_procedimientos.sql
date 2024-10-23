@@ -1,6 +1,9 @@
+-- 1. Registrar una nueva compra
+create procedure registrar_compra(
+	
+);
+
 -- 2. Registrar un nuevo proveedor: Un procedimiento para agregar información de nuevos proveedores a la base de datos.
-
-
 DELIMITER $$
 create procedure agragar_nuevo_proveedor(
     nombre varchar(125),
