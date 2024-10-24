@@ -2,7 +2,7 @@ SELECT e.nombre, c.cargo AS cargo
 FROM empleados e
 JOIN cargos c ON e.id_cargo = c.id_cargo;
 
--- 2. Registrar un nuevo proveedor: Un procedimiento para agregar información de nuevos proveedores a la base de datos.
+-- 1. Registrar un nuevo proveedor: Un procedimiento para agregar información de nuevos proveedores a la base de datos.
 drop procedure if exists agregar_nuevo_proveedor;
 
 DELIMITER $$
@@ -23,7 +23,7 @@ call agragar_nuevo_proveedor('Paisas la 36', '3123404945', 2);
 
 select * from proveedores;
 
--- 1. **Registrar una nueva categoría de productos**: Procedimiento que permite añadir una nueva categoría a la base de datos.
+-- 2. **Registrar una nueva categoría de productos**: Procedimiento que permite añadir una nueva categoría a la base de datos.
 drop procedure if exists registrar_nueva_categoria;
 
 DELIMITER $$
@@ -40,7 +40,7 @@ call registrar_nueva_categoria('Belleza');
 
 select * from categorias;
 
--- 2. **Actualizar el precio de un producto específico**: Procedimiento que recibe el ID de un producto y un nuevo precio, y actualiza el precio en la base de datos.
+-- 3. **Actualizar el precio de un producto específico**: Procedimiento que recibe el ID de un producto y un nuevo precio, y actualiza el precio en la base de datos.
 drop procedure if exists actualizar_precio;
 
 DELIMITER $$
@@ -59,38 +59,36 @@ call actualizar_precio(5,100000);
 
 select * from productos; 
 
--- 3. **Eliminar un cliente**: Procedimiento que elimina un cliente de la base de datos en función de su ID.
-
+-- 4. **Eliminar un cliente**: Procedimiento que elimina un cliente de la base de datos en función de su ID.
 drop procedure if exists eliminar_cliente_por_telefono;
 
-DELIMITER $$
+delimiter $$
 create procedure eliminar_cliente_por_telefono(
-    c_celular char(10)
+    p_celular char(10)
 )
 begin
-	 delete from ventas_promocion
-    where id_venta in (
-        select id_venta from ventas where id_cliente = (select id_cliente from clientes where celular = c_celular)
-    );
+    declare cliente_existente int;
 
-	delete from ventas_productos
-    where id_venta in (
-        select id_venta from ventas where id_cliente = (select id_cliente from clientes where celular = c_celular)
-    );
+    select count(*) into cliente_existente
+    from clientes
+    where celular = p_celular;
 
-	delete from ventas
-    where id_cliente = (select id_cliente from clientes where celular = c_celular);
+    if cliente_existente = 0 then
+        select 'el cliente no existe' as mensaje;
+    else
+        delete from clientes
+        where celular = p_celular;
 
-    delete from clientes
-    where celular = c_celular;
+        select 'cliente eliminado exitosamente' as mensaje;
+    end if;
 end $$
-DELIMITER ;
+delimiter ;
 
- call eliminar_cliente_por_telefono('3000000001');
- 
- select * from clientes;
+call eliminar_cliente_por_telefono('3000000010'); 
 
--- 4. **Registrar un nuevo método de pago**: Procedimiento que permite agregar un nuevo método de pago, como "Tarjeta de Crédito" o "PayPal".
+select * from clientes;
+
+-- 5. **Registrar un nuevo método de pago**: Procedimiento que permite agregar un nuevo método de pago, como "Tarjeta de Crédito" o "PayPal".
 drop procedure if exists registrar_metodo_pago;
 
 DELIMITER $$
@@ -107,7 +105,7 @@ CALL registrar_metodo_pago('Nequi');
 
 select * from metodos;
 
--- 5. **Actualizar la información de un proveedor**: Procedimiento que permite modificar los datos de contacto de un proveedor existente.
+-- 6. **Actualizar la información de un proveedor**: Procedimiento que permite modificar los datos de contacto de un proveedor existente.
 drop procedure if exists actualizar_proveedor;
 
 DELIMITER $$
@@ -125,7 +123,7 @@ END $$
 DELIMITER ;
 CALL actualizar_proveedor(1, 'Nuevo proveedor creado', '3063500002');
 
--- 6. **Registrar una nueva talla de producto**: Procedimiento que permite añadir una nueva talla disponible para los productos.
+-- 7. **Registrar una nueva talla de producto**: Procedimiento que permite añadir una nueva talla disponible para los productos.
 drop procedure if exists registrar_talla;
 
 DELIMITER $$
@@ -139,9 +137,6 @@ END $$
 DELIMITER ;
 CALL registrar_talla('XXXL');
 select * from tallas;
-
-
--- 7. **Actualizar el stock de un producto específico**: Procedimiento que ajusta manualmente la cantidad en inventario de un producto dado.
 
 -- 8. **Asignar un rol a un empleado**: Procedimiento que actualiza el rol de un empleado en función de su ID.
 drop procedure if exists asignar_rol_empleado;
@@ -167,57 +162,87 @@ select * from empleados;
 -- 9. **Eliminar un producto del inventario**: Procedimiento que permite eliminar un producto del inventario, especificado por su ID.
 drop procedure if exists eliminar_producto_inventario;
 
-DELIMITER $$
+delimiter $$
 create procedure eliminar_producto_inventario(
     p_id_producto int
 )
 begin
-    -- Eliminar referencias en compras_productos
-    delete from compras_productos
+    declare producto_existente int;
+
+    select count(*) into producto_existente
+    from productos
     where id_producto = p_id_producto;
 
-    -- Eliminar referencias en ventas_productos
+    if producto_existente = 0 then
+        select 'el producto no existe' as mensaje;
+
+    end if;
+
+    delete from ventas_productos_tallas
+    where id_venta_producto in (
+        select id_venta_producto from ventas_productos where id_producto = p_id_producto
+    );
+
     delete from ventas_productos
     where id_producto = p_id_producto;
 
-    -- Eliminar referencias en productos_tallas
+    delete from compras_productos
+    where id_producto = p_id_producto;
+
+
     delete from productos_tallas
     where id_producto = p_id_producto;
 
-    -- Eliminar referencias en promociones_productos
     delete from promociones_productos
     where id_producto = p_id_producto;
 
-    -- Eliminar el producto de la tabla de inventario
     delete from inventario
     where id_producto = p_id_producto;
 
-    -- Finalmente, eliminar el producto de la tabla de productos
     delete from productos
     where id_producto = p_id_producto;
-end $$
-DELIMITER ;
 
-call eliminar_producto_inventario(1);
+    select 'producto eliminado exitosamente' as mensaje;
+end $$
+delimiter ;
+
+call eliminar_producto_inventario(1); 
 
 select * from productos;
+
+
 
 -- 11. **Registrar un nuevo cliente**: Procedimiento que añade un cliente con sus datos básicos (nombre, apellido, celular).
 drop procedure if exists registrar_nuevo_cliente;
 
-DELIMITER $$
+delimiter $$
 create procedure registrar_nuevo_cliente(
-    p_nombre VARCHAR(125),
-    p_apellido VARCHAR(255),
-    p_celular CHAR(10)
+    p_nombre varchar(125),
+    p_apellido varchar(255),
+    p_celular char(10)
 )
 begin
-    insert into clientes (nombre, apellido, celular)
-    values (p_nombre, p_apellido, p_celular);
-end $$
-DELIMITER ;
+    declare celular_existente int;
 
-call registrar_nuevo_cliente('Juan', 'Pérez', '3000000001');
+    select count(*) into celular_existente
+    from clientes
+    where celular = p_celular;
+
+    if celular_existente > 0 then
+        select 'el celular ya está registrado' as mensaje;
+    else
+        insert into clientes (nombre, apellido, celular)
+        values (p_nombre, p_apellido, p_celular);
+
+        select 'cliente registrado exitosamente' as mensaje;
+    end if;
+end $$
+delimiter ;
+
+call registrar_nuevo_cliente('Juanito', 'Pedraza', '3063501202');  
+
+select * from clientes;
+
 
 -- -- 12. **Actualizar el sueldo de un empleado**: Procedimiento que recibe el ID de un empleado y un nuevo sueldo, y actualiza la información en la base de datos.
 drop procedure if exists actualizar_sueldo_cargo;
@@ -320,8 +345,7 @@ END $$
 DELIMITER ;
 CALL actualizar_cliente(1, 'Dora', 'la exploradora', '3000000231');
 
-sel
-ect nombre, apellido, celular from clientes;
+select nombre, apellido, celular from clientes;
 
 -- -- 16. **Registrar una nueva clasificación de productos**: Procedimiento para agregar una nueva clasificación (por ejemplo, "Disfraces Infantiles").
 drop procedure if exists registrar_clasificacion;
@@ -379,7 +403,7 @@ begin
 end $$
 DELIMITER ;
 
-call cambiar_password_usuario('j.perezzz', 'nuevaContrasenaSegura1111222', 2);
+call cambiar_password_usuario('j.perezzz', '1111222', 2);
 
 select * from usuarios;
 select * from roles;
@@ -469,6 +493,6 @@ end $$
 delimiter ;
 
 
-call eliminar_metodo_pago(6);
+call eliminar_metodo_pago(5);
 
 select * from metodos;

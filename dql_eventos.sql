@@ -1,0 +1,1 @@
+-- 7. **Actualizar el stock de un producto específico**: Procedimiento que ajusta manualmente la cantidad en inventario de un producto dado.
