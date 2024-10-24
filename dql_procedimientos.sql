@@ -75,7 +75,7 @@ begin
 
     if cliente_existente = 0 then
         select 'el cliente no existe' as mensaje;
-    else
+    elseif cliente_existente >= 1 then
         delete from clientes
         where celular = p_celular;
 
@@ -84,7 +84,7 @@ begin
 end $$
 delimiter ;
 
-call eliminar_cliente_por_telefono('3000000010'); 
+call eliminar_cliente_por_telefono('300000010'); 
 
 select * from clientes;
 
