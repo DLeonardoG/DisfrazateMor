@@ -1,4 +1,6 @@
-
+SELECT e.nombre, c.cargo AS cargo
+FROM empleados e
+JOIN cargos c ON e.id_cargo = c.id_cargo;
 
 -- 2. Registrar un nuevo proveedor: Un procedimiento para agregar información de nuevos proveedores a la base de datos.
 DELIMITER $$
@@ -247,8 +249,35 @@ call actualizar_nombre_categoria(1, 'nueva categoria');
 select * from categorias;
 
 -- -- 14. **Añadir una descripción a un producto**: Procedimiento que permite actualizar o añadir una descripción detallada a un producto.
+drop procedure crear_actualizar_descripcion_producto;
+
+DELIMITER $$
+create procedure crear_actualizar_descripcion_producto(
+	p_id_producto int,
+	p_descripcion varchar(255)
+)
+begin
+	rollback;
+    select 'Error, no elegiste un producto existente';
+	
+end $$
+	start transaction;
+    
+    update productos
+    set descripcion = p_descripcion
+    where id_producto = p_id_producto;
+    
+    commit;
+DELIMITER ;
+
+call crear_actualizar_descripcion_producto(70,'Esta es la nueva descripcion del producto cuando la cambiamos');
+
+select id_producto as id, nombre, descripcion from productos order by id asc;
+
 
 -- -- 15. **Actualizar los datos de contacto de un cliente**: Procedimiento que permite modificar la información de contacto de un cliente.
+
+
 
 -- -- 16. **Registrar una nueva clasificación de productos**: Procedimiento para agregar una nueva clasificación (por ejemplo, "Disfraces Infantiles").
 
