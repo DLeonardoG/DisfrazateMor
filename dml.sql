@@ -498,5 +498,17 @@ insert into ventas_promocion (id_promocion, id_venta) values
 (2, 2),
 (3, 3);
 
+insert into ventas_productos (id_producto, id_venta, cantidad)
+values 
+    (1, 1, 3),  -- vendemos 3 disfraces de vampiro
+    (2, 1, 5);  -- vendemos 5 sombreros de mago
+
+-- asignar tallas para el disfraz vendido
+insert into ventas_productos_tallas (cantidad, id_talla, id_venta_producto)
+values
+    (3, 2, 1); 
+    
+INSERT INTO ventas (fecha, id_metodo, id_cliente, id_empleado, total_venta) 
+VALUES (NOW(), 1, 1, 1, 200.00); -- Suponiendo que no hay suficiente stock
 
 
