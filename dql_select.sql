@@ -311,11 +311,11 @@ from promociones
 order by descuento desc 
 limit 10;
 
--- 49. historial de cambios en inventario. ESTA NO SIRVE
-select productos.nombre, inventario.fecha_cambio, inventario.cantidad_anterior, inventario.cantidad_actual 
-from inventario 
-join productos on inventario.id_producto = productos.id_producto 
-order by inventario.fecha_cambio desc;
+-- 49. resumen de ventas
+select c.nombre as nombre_cliente, v.total_venta, v.fecha 
+from ventas v
+join clientes c on v.id_cliente = c.id_cliente 
+order by v.fecha desc;
 
 -- 50. total de ventas por proveedor.
 select proveedores.nombre, sum(productos.precio) as total_ventas 
@@ -405,17 +405,15 @@ where dayofweek(ventas.fecha) in (1, 7)
 group by empleados.id_empleado 
 order by ventas_festivos desc;
 
--- 61. ventas por rango de edad de los clientes. ESTA NO SIRVE
-select case 
-    when edad between 0 and 18 then '0-18'
-    when edad between 19 and 30 then '19-30'
-    when edad between 31 and 50 then '31-50'
-    else '51+' end as rango_edad, 
-    count(*) as total_ventas 
-from clientes 
-join ventas on clientes.id_cliente = ventas.id_cliente 
-group by rango_edad 
-order by total_ventas desc;
+-- 61. resumen de ventas con cantidad total de productos
+select c.nombre as nombre_cliente, v.total_venta, v.fecha, 
+    sum(vp.cantidad) as cantidad_total_productos 
+from ventas v
+join clientes c on v.id_cliente = c.id_cliente 
+join ventas_productos vp on v.id_venta = vp.id_venta 
+group by v.id_venta, c.nombre, v.total_venta, v.fecha 
+order by v.fecha desc;
+
 
 -- 62. inventario restante por categoría de producto.
 select categorias.categoria, sum(inventario.cantidad_total) as cantidad_restante 
@@ -424,14 +422,13 @@ join categorias_productos on categorias.id_categoria = categorias_productos.id_c
 join inventario on categorias_productos.id_producto = inventario.id_producto 
 group by categorias.categoria;
 
--- 63. productos con mayor incremento de precio en el último año. ESTA NO SIRVE
-select productos.nombre, max(historico_precios.precio) - min(historico_precios.precio) as incremento_precio 
-from productos 
-join historico_precios on productos.id_producto = historico_precios.id_producto 
-where year(historico_precios.fecha) = year(now()) - 1 
-group by productos.id_producto 
-order by incremento_precio desc 
-limit 5;
+-- 63. total de ventas por cliente
+select c.nombre as nombre_cliente, 
+       sum(v.total_venta) as total_compras
+from clientes c 
+join ventas v on c.id_cliente = v.id_cliente 
+group by c.id_cliente 
+order by total_ventas desc;
 
 -- 64. empleados que no realizaron ventas en el último mes.
 select empleados.nombre, empleados.apellido, empleados.celular
@@ -451,13 +448,15 @@ group by productos.nombre
 order by descuento_mayor desc 
 limit 5;
 
--- 66. productos devueltos en el último trimestre. 	ESTA NO SIRVE
-select productos.nombre, count(devoluciones.id_producto) as total_devoluciones 
-from productos 
-join devoluciones on productos.id_producto = devoluciones.id_producto 
-where devoluciones.fecha between date_sub(now(), interval 3 month) and now() 
-group by productos.nombre 
-order by total_devoluciones desc;
+-- 66. total de productos en inventario por categoría
+select cat.categoria, 
+       sum(i.cantidad_total) as total_productos 
+from categorias cat 
+join categorias_productos cp on cat.id_categoria = cp.id_categoria 
+join productos p on cp.id_producto = p.id_producto 
+join inventario i on p.id_producto = i.id_producto 
+group by cat.id_categoria 
+order by total_productos desc;
 
 -- 67. promedio de inventario mensual por producto.
 select productos.nombre, avg(inventario.cantidad_total) as promedio_mensual 
@@ -493,14 +492,14 @@ from clientes
 join ventas on clientes.id_cliente = ventas.id_cliente 
 group by clientes.id_cliente;
 
--- 71. productos que estuvieron en inventario en los últimos 3 meses. ESTA NO SIRVE
-select productos.nombre 
-from productos 
-where id_producto in (
-    select distinct id_producto 
-    from inventario 
-    where fecha_cambio between date_sub(now(), interval 3 month) and now()
-);
+-- 71. total de compras por proveedor
+select p.nombre as nombre_proveedor, 
+       count(c.id_compra) as total_compras, 
+       max(c.fecha) as fecha_ultima_compra 
+from proveedores p 
+join compras c on p.id_proveedor = c.id_proveedor 
+group by p.id_proveedor 
+order by total_compras desc;
 
 -- 72. ventas diarias en la última semana.
 select date(fecha) as dia, sum(total_venta) as total_diario 
@@ -548,12 +547,14 @@ group by promociones.id_promocion
 order by total_impacto desc 
 limit 3;
 
--- 78. ventas realizadas por empleados que están activos actualmente. ESTA NO SIRVE
-select empleados.nombre, empleados.apellido, count(ventas.id_venta) as total_ventas 
-from empleados 
-join ventas on empleados.id_empleado = ventas.id_empleado 
-where empleados.activo = 1 
-group by empleados.id_empleado;
+-- 78.  clientes con mas de una compra y su total gastado
+select c.nombre as nombre_cliente, 
+       (select count(*) from ventas v where v.id_cliente = c.id_cliente) as total_compras, 
+       (select sum(v.total_venta) from ventas v where v.id_cliente = c.id_cliente) as total_gastado 
+from clientes c 
+where (select count(*) from ventas v where v.id_cliente = c.id_cliente) > 1 
+order by total_gastado desc;
+
 
 -- 79. categorías con productos agotados.
 select categorias.categoria 
@@ -593,13 +594,12 @@ where year(fecha) = year(now())
 group by dia 
 order by dia;
 
--- 83. total de devoluciones por producto en el último semestre. ESTA NO SIRVE
-select productos.nombre, count(devoluciones.id_producto) as total_devoluciones 
-from productos 
-join devoluciones on productos.id_producto = devoluciones.id_producto 
-where devoluciones.fecha between date_sub(now(), interval 6 month) and now() 
-group by productos.id_producto 
-order by total_devoluciones desc;
+-- 83. productos con precio superior al promedio
+select p.nombre as nombre_producto, 
+       p.precio 
+from productos p 
+where p.precio > (select avg(precio) from productos) 
+order by p.precio desc;
 
 -- 84. comparacion de ventas entre promociones y sin promociones.
 select 'Con Promoción' as tipo_venta, count(*) as total 
@@ -647,31 +647,30 @@ group by proveedores.id_proveedor
 order by total_productos desc 
 limit 5;
 
--- 89. productos más vendidos por temporada (verano, invierno, etc.). esta no sirve
-select productos.nombre, temporadas.temporada, count(ventas_productos.id_producto) as total_vendidos 
-from productos 
-join ventas_productos on productos.id_producto = ventas_productos.id_producto 
-join ventas on ventas_productos.id_venta = ventas.id_venta 
-join temporadas on month(ventas.fecha) = temporadas.mes 
-group by productos.id_producto, temporadas.temporada 
-order by total_vendidos desc 
-limit 10;
+-- 89. empleados y su total de ventas
+select e.nombre as nombre_empleado, 
+       (select sum(v.total_venta) 
+        from ventas v 
+        where v.id_empleado = e.id_empleado) as total_ventas 
+from empleados e 
+where e.id_empleado in (select distinct v.id_empleado from ventas v) 
+order by total_ventas desc;
 
--- 90. clientes con el mayor número de devoluciones. esta no sirve
-select clientes.nombre, clientes.apellido, count(devoluciones.id_devolucion) as total_devoluciones 
-from clientes 
-join devoluciones on clientes.id_cliente = devoluciones.id_cliente 
-group by clientes.id_cliente 
-order by total_devoluciones desc 
-limit 5;
 
--- 91. productos que nunca se devolvieron. esta no sirve
-select productos.nombre 
-from productos 
-where id_producto not in (
-    select distinct id_producto 
-    from devoluciones
-); 
+-- 90. productos con precio superior al promedio
+select p.nombre as nombre_producto, p.precio 
+from productos p 
+where p.precio > (select avg(precio) from productos) 
+order by p.precio desc;
+
+-- 91. clientes con el total de compras
+select c.nombre as nombre_cliente, 
+       count(v.id_venta) as total_compras 
+from clientes c 
+join ventas v on c.id_cliente = v.id_cliente 
+group by c.id_cliente 
+order by total_compras desc;
+
 
 -- 92. clientes que compraron productos en todas las categorías.
 select clientes.nombre, clientes.apellido 
@@ -688,15 +687,21 @@ where not exists (
     )
 );
 
--- 93. comparación entre cantidad de ventas y devoluciones por producto. esta no sirve
-select productos.nombre, 
-    count(ventas_productos.id_producto) as total_ventas, 
-    count(devoluciones.id_producto) as total_devoluciones 
-from productos 
-left join ventas_productos on productos.id_producto = ventas_productos.id_producto 
-left join devoluciones on productos.id_producto = devoluciones.id_producto 
-group by productos.id_producto 
+-- 93. empleados con total de ventas y cliente más atendido
+select e.nombre as nombre_empleado, 
+       sum(v.total_venta) as total_ventas, 
+       (select c.nombre 
+        from clientes c 
+        join ventas v2 on c.id_cliente = v2.id_cliente 
+        where v2.id_empleado = e.id_empleado 
+        group by c.id_cliente 
+        order by count(v2.id_venta) desc 
+        limit 1) as cliente_mas_atendido 
+from empleados e 
+join ventas v on e.id_empleado = v.id_empleado 
+group by e.id_empleado 
 order by total_ventas desc;
+
 
 -- 94. análisis de ventas de productos premium (por ejemplo, > 100 USD).
 select productos.nombre, count(ventas_productos.id_producto) as total_vendidos 
@@ -715,24 +720,27 @@ group by clientes.id_cliente
 order by total_bajo desc 
 limit 5;
 
--- 96. productos más vendidos en días lluviosos (si se tiene información meteorológica). esta no sirve
-select productos.nombre, count(ventas_productos.id_producto) as total_vendidos 
-from productos 
-join ventas_productos on productos.id_producto = ventas_productos.id_producto 
-join ventas on ventas_productos.id_venta = ventas.id_venta 
-join clima on date(ventas.fecha) = clima.fecha 
-where clima.condicion = 'lluvia' 
-group by productos.id_producto 
-order by total_vendidos desc 
-limit 5;
+-- 96. total de ventas por producto y porcentaje
+select p.nombre as nombre_producto, 
+       sum(vp.cantidad * p.precio) as total_ventas, 
+       (sum(vp.cantidad * p.precio) / (select sum(v2.total_venta) from ventas v2)) * 100 as porcentaje_ventas 
+from productos p 
+join ventas_productos vp on p.id_producto = vp.id_producto 
+join ventas v on vp.id_venta = v.id_venta 
+group by p.id_producto 
+order by total_ventas desc;
 
--- 97. empleados con mejores evaluaciones de desempeño (si existe un sistema de evaluación). esta no sirve
-select empleados.nombre, empleados.apellido, avg(evaluaciones.puntuacion) as promedio_evaluacion 
-from empleados 
-join evaluaciones on empleados.id_empleado = evaluaciones.id_empleado 
-group by empleados.id_empleado 
-order by promedio_evaluacion desc 
-limit 5;
+-- 97. proveedores con precio promedio de productos superior a un valor especifico
+select p.nombre as nombre_proveedor, 
+       count(pr.id_producto) as total_productos, 
+       (select avg(pr2.precio) 
+        from productos pr2 
+        where pr2.id_proveedor = p.id_proveedor) as precio_promedio 
+from proveedores p 
+join productos pr on p.id_proveedor = pr.id_proveedor 
+group by p.id_proveedor 
+having precio_promedio > 50 
+order by total_productos desc;
 
 -- 98. categorías con productos con más descuentos aplicados.
 select categorias.categoria, count(promociones_productos.id_promocion) as total_descuentos 

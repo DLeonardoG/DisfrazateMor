@@ -1,6 +1,5 @@
--- 1. evento para controlar el stock mínimo
--- un evento que verifique si el inventario de algún producto está por debajo de un nivel mínimo (e.g., 5 unidades) y enviar una alerta para reponer stock.
-
+use disfrazateMor;
+-- 1. evento para controlar el stock minimo
 delimiter $$ 
 create event controlar_stock_minimo 
 on schedule every 1 day 
@@ -18,7 +17,6 @@ end$$
 delimiter ;
 
 -- 2. verificar periódicamente si alguna promoción ha caducado y, en caso afirmativo, desactivarla.
-
 delimiter $$ 
 create event controlar_promociones_caducadas 
 on schedule every 1 day 
@@ -29,8 +27,6 @@ end$$
 delimiter ;
 
 -- 3. evento para calcular el salario mensual de los empleados
--- generar un evento que, al final de cada mes, calcule el salario de los empleados basado en su cargo (cargos).
-
 delimiter $$ 
 create event calcular_salarios_empleados 
 on schedule every 1 month 
@@ -43,8 +39,6 @@ end$$
 delimiter ;
 
 -- 4. evento para eliminar promociones expiradas
--- crear un evento que ejecute diariamente para eliminar promociones cuya fecha_fin haya pasado.
-
 delimiter $$ 
 create event eliminar_promociones_expiradas 
 on schedule every 1 day 
@@ -55,8 +49,6 @@ end$$
 delimiter ;
 
 -- 5. evento para monitorear el rendimiento de empleados
--- crear un procedimiento que calcule el total de ventas realizadas por cada empleado en un mes, para evaluar su rendimiento.
-
 delimiter $$ 
 create event monitorear_rendimiento_empleados 
 on schedule every 1 month 
@@ -70,8 +62,6 @@ end$$
 delimiter ;
 
 -- 6. evento para detectar productos sin ventas
--- ejecutar un evento mensual que identifique productos que no se hayan vendido en los últimos 3 meses para análisis y posibles promociones.
-
 delimiter $$ 
 create event detectar_productos_sin_ventas 
 on schedule every 1 month 
@@ -84,8 +74,6 @@ end$$
 delimiter ;
 
 -- 7. evento para actualizar automáticamente las fechas de promociones
--- un proceso automático que extienda las fechas de promociones si una venta relacionada fue realizada justo al final de la promoción.
-
 delimiter $$ 
 create event extender_promocion 
 on schedule every 1 day 
@@ -98,8 +86,6 @@ end$$
 delimiter ;
 
 -- 8. evento para recordar la recolección de productos comprados
--- enviar una alerta o recordatorio para recoger productos comprados que aún no han sido despachados.
-
 delimiter $$ 
 create event recordar_recoleccion 
 on schedule every 1 day 
@@ -113,8 +99,6 @@ end$$
 delimiter ;
 
 -- 9. evento para calcular ganancias mensuales
--- crear un proceso que al final del mes calcule las ganancias totales sumando todas las ventas menos las compras.
-
 delimiter $$ 
 create event calcular_ganancias 
 on schedule every 1 month 
@@ -125,9 +109,7 @@ begin
 end$$
 delimiter ;
 
--- 10. evento para ajustar el sueldo de empleados con base en su rendimiento
--- si el empleado ha generado un alto volumen de ventas, incrementar su sueldo automáticamente.
-
+-- 10. evento para ajustar el sueldo de empleados con base en su rendimiento si el empleado ha generado un alto volumen de ventas, incrementar su sueldo automáticamente.
 delimiter $$ 
 create event ajustar_sueldo 
 on schedule every 1 month 
@@ -140,9 +122,7 @@ begin
 end$$
 delimiter ;
 
--- 11. eliminar clientes que no han hecho ninguna compra en el último año
--- elimina clientes inactivos por más de un año.
-
+-- 11. eliminar clientes que no han hecho ninguna compra en el último año elimina clientes inactivos por más de un año.
 delimiter $$ 
 create event eliminar_clientes_inactivos 
 on schedule every 1 year 
@@ -153,9 +133,7 @@ begin
 end$$
 delimiter ;
 
--- 12. eliminar productos sin inventario ni ventas en los últimos 6 meses
--- limpia productos que no tienen stock y no han sido vendidos en los últimos 6 meses.
-
+-- 12. eliminar productos sin inventario ni ventas en los últimos 6 meses limpia productos que no tienen stock y no han sido vendidos en los últimos 6 meses.
 delimiter $$ 
 create event eliminar_productos_sin_ventas 
 on schedule every 1 month 
@@ -177,8 +155,7 @@ begin
 end$$
 delimiter ;
 
--- 14. calcular y registrar las ventas diarias de cada empleado
--- calcula las ventas diarias realizadas por cada empleado y las registra en una tabla
+-- 14. calcular y registrar las ventas diarias de cada empleado calcula las ventas diarias realizadas por cada empleado y las registra en una tabla
 create table if not exists ventas_diarias_empleados (
     id_empleado int,
     fecha date,
@@ -198,15 +175,12 @@ begin
 end$$
 delimiter ;
 
--- 15. calcular el total de ventas mensuales por producto
--- calcula y registra las ventas totales de cada producto cada mes.
-
+-- 15. calcular el total de ventas mensuales por producto calcula y registra las ventas totales de cada producto cada mes.
 create table if not exists ventas_mensuales_productos (
     id_producto int,
     mes int,
     total_ventas decimal(10, 2)
 );
-
 delimiter $$ 
 create event recalcular_ventas_mensuales_productos 
 on schedule every 1 month 
@@ -221,9 +195,7 @@ begin
 end$$
 delimiter ;
 
--- 16. verificar si algún proveedor no ha entregado productos en 6 meses
--- detecta proveedores inactivos y envía una alerta.
-
+-- 16. verificar si algún proveedor no ha entregado productos en 6 meses detecta proveedores inactivos y envía una alerta.
 delimiter $$ 
 create event detectar_proveedores_inactivos 
 on schedule every 1 month 
@@ -234,9 +206,7 @@ begin
 end$$
 delimiter ;
 
--- 17. actualizar la lista de productos más vendidos cada mes
--- registra los productos más vendidos cada mes en una tabla separada
-
+-- 17. actualizar la lista de productos más vendidos cada mes registra los productos más vendidos cada mes en una tabla separada
 create table if not exists productos_mas_vendidos (
     id_producto int,
     mes int,
@@ -258,9 +228,7 @@ begin
 end$$
 delimiter ;
 
--- 18. verificar clientes con más de 3 compras en un mes
--- detecta los clientes más activos y registra sus compras.
-
+-- 18. verificar clientes con más de 3 compras en un mes detecta los clientes más activos y registra sus compras.
 create table if not exists clientes_activos (
     id_cliente int,
     mes int,
@@ -281,9 +249,7 @@ begin
 end$$
 delimiter ;
 
--- 19. verificar y aplicar un descuento adicional para productos con baja demanda
--- aplica un descuento adicional para productos que no han vendido en los últimos meses.
-
+-- 19. verificar y aplicar un descuento adicional para productos con baja demanda aplica un descuento adicional para productos que no han vendido en los ultimos meses.
 delimiter $$ 
 create event aplicar_descuento_baja_demanda 
 on schedule every 1 month 

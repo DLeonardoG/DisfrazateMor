@@ -99,11 +99,11 @@ se dividen todas las tareas 50/50
 
 readme
 roles
-corregir consultas
-corregir comentarios
+corregir consultas -- hecho
+corregir comentarios -- hecho
 corregir fechas del dml
 subir la foto del Diagrama
-subir la documentados del uml con el html
+subir la documentados del uml con el html --- hecho
 
 ===================================================================
 

@@ -1,3 +1,4 @@
+use disfrazateMor;
 -- 1 se genera y descuenta lo respectivo a la venta de cada uno
 drop trigger if exists vender_trigger;
 delimiter //
@@ -159,7 +160,6 @@ begin
     end if;
 end //
 delimiter ;
-
 
 -- 9 bloquear la eliminación de productos si existen ventas asociadas
 drop trigger if exists bloquear_eliminacion_producto;
@@ -334,7 +334,7 @@ begin
 end //
 delimiter ;
 
--- 20 registrar la devolución de un producto en un historial de devoluciones error
+-- 20 registrar la devolucion de un producto en un historial de devoluciones
 drop trigger if exists registrar_devolucion_producto;
 delimiter //
 create trigger registrar_devolucion_producto
@@ -345,3 +345,4 @@ begin
     values (new.id_producto, new.cantidad, now());
 end //
 delimiter ;
+

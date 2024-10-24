@@ -1,7 +1,7 @@
 use disfrazateMor;
 show function status where db = 'disfrazateMor';
 
--- 1. obtener el id del producto con el nombre
+-- 1 obtener el id del producto con el nombre
 drop function if exists obtener_id_producto;
 delimiter //
 create function obtener_id_producto(nombre_ varchar(125))
@@ -17,7 +17,7 @@ end //
 delimiter ;
 select obtener_id_producto('Sombrero de Vaquero');
 
--- 2. obtener el precio del producto con el id
+-- 2 obtener el precio del producto con el id
 drop function if exists obtener_precio_producto;
 delimiter //
 create function obtener_precio_producto(id_producto_ int)
@@ -33,7 +33,7 @@ end //
 delimiter ;
 select obtener_precio_producto(10);
 
--- 3. tener el id y el precio del producto
+-- 3 tener el id y el precio del producto
 drop function if exists obtener_id_y_precio_producto;
 delimiter //
 create function obtener_id_y_precio_producto(nombre_ varchar(125))
@@ -54,7 +54,7 @@ end //
 delimiter ;
 select obtener_id_y_precio_producto('Sombrero de Vaquero');
 
--- 4. obtener el nombre y la descripcion
+-- 4 obtener el nombre y la descripcion
 drop function if exists obtener_la_descripcion;
 delimiter //
 create function obtener_la_descripcion(id_produ int)
@@ -73,7 +73,7 @@ end //
 delimiter ;
 select obtener_la_descripcion(5);
 
--- 5. obtener el nombre y la descripcion
+-- 5 obtener el nombre y la descripcion
 drop function if exists obtener_el_empleado;
 delimiter //
 create function obtener_el_empleado(cel char(10))
@@ -92,7 +92,7 @@ end //
 delimiter ;
 select obtener_el_empleado('3100000001');
 
--- 5. obtener el nombre por el telefono
+-- 5 obtener el nombre por el telefono
 drop function if exists obtener_el_empleado;
 delimiter //
 create function obtener_el_empleado(cel char(10))
@@ -158,7 +158,7 @@ begin
     return total_venta_;
 end //
 delimiter ;
-select calcular_y_asignar_total_venta(3);
+select calcular_y_asignar_total_venta(1);
 
 -- 8. calcular el total de disfraces disponibles a la venta
 drop function if exists calcular_total_disfraces;
@@ -204,6 +204,7 @@ begin
     set productos_bajos = '';
     select group_concat(p.nombre separator ', ') into productos_bajos
     from inventario i
+    
     join productos p on i.id_producto = p.id_producto
     where i.cantidad_total < num;
     return productos_bajos;

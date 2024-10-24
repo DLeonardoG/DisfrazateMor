@@ -238,6 +238,13 @@ create table if not exists devoluciones (
     foreign key(id_producto) references productos(id_producto)
 );
 
+create table if not exists usuarios_roles (
+	id_usuario int,
+    id_rol int,
+    primary key (id_usuario, id_rol),
+    foreign key (id_usuario) references usuarios(id_usuario),
+    foreign key (id_rol) references roles(id_rol)
+);
 
 alter table ventas
 add column descuento decimal(10, 2) default 0;
