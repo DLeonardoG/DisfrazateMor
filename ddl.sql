@@ -229,4 +229,16 @@ create table if not exists productos_tallas (
     foreign key (id_talla) references tallas(id_talla),
     primary key (id_producto, id_talla)
 );
+
+create table if not exists devoluciones (
+    id_devolucion int primary key auto_increment,
+    id_producto int,
+    cantidad int,
+    fecha_devolucion datetime,
+    foreign key(id_producto) references productos(id_producto)
+);
+
+
+alter table ventas
+add column descuento decimal(10, 2) default 0;
 -- show tables
