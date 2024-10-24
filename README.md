@@ -161,13 +161,15 @@ La tienda DisfrazateMor es un sistema de gestión diseñado para facilitar la ve
 - **Workbench** : Se uso para el modelado fisico del MySQL.
 
 # Consultas
-
+```sql
 -- 25. total de ingresos diarios en la tienda.
 select date(fecha) as dia, sum(productos.precio) as ingresos_diarios 
 from ventas 
 join ventas_productos on ventas.id_venta = ventas_productos.id_venta 
 join productos on ventas_productos.id_producto = productos.id_producto 
 group by dia;
+
+
 
 -- 26. detalle de inventario por producto y talla.
 select productos.nombre, tallas.talla, productos_tallas.cantidad 
@@ -342,9 +344,10 @@ select c.nombre as nombre_cliente, v.total_venta, v.fecha
 from ventas v
 join clientes c on v.id_cliente = c.id_cliente 
 order by v.fecha desc;
+```
 
 # Procedimientos
-
+```sql
 -- 1 registrar un nuevo proveedor
 drop procedure if exists agregar_nuevo_proveedor;
 
@@ -651,9 +654,11 @@ end $$
 delimiter ;
 call eliminar_metodo_pago(5); 
 select * from metodos;
+```
 
 # Funciones
 
+```sql
 use disfrazateMor;
 show function status where db = 'disfrazateMor';
 
@@ -1069,9 +1074,11 @@ begin
 end //
 delimiter ;
 select contar_clientes();
+```
 
  # Triggers
-
+ 
+```sql
 use disfrazateMor;
 -- 1 se genera y descuenta lo respectivo a la venta de cada uno
 drop trigger if exists vender_trigger;
@@ -1419,9 +1426,11 @@ begin
     values (new.id_producto, new.cantidad, now());
 end //
 delimiter ;
+```
 
 # Eventos
 
+```sql
 use disfrazateMor;
 -- 1. evento para controlar el stock minimo
 delimiter $$ 
@@ -1684,9 +1693,11 @@ begin
     where id_producto in (select id_producto from ventas_productos where cantidad < 10 and fecha > date_sub(now(), interval 3 month)); 
 end$$
 delimiter ;
+```
 
 # Roles de Usuario y Permisos
 
+```sql
 -- el administrador con acceso total
 create user 'admin'@'localhost' identified by 'password_admin';
 grant all privileges on disfrazateMor.* to 'admin'@'localhost' with grant option;
@@ -1715,6 +1726,7 @@ show grants for 'vendedor'@'localhost';
 show grants for 'encargado_proveedores'@'localhost';
 show grants for 'gerente'@'localhost';
 show grants for 'encargado_almacen'@'localhost';
+```
 
 ## Uso📝
 
