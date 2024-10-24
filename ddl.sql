@@ -5,13 +5,11 @@ use disfrazateMor;
 -- show databases;
 -- show tables;
 
--- tabla tallas
 create table if not exists tallas (
     id_talla int primary key auto_increment,
     talla varchar(10) not null unique 
 );
 
--- tipos proveedores - tabla
 create table if not exists tipos_proveedores (
     id_tipo_proveedor int primary key auto_increment,
     tipo_proveedor varchar(255) not null unique
@@ -162,11 +160,12 @@ create table if not exists ventas (
     foreign key (id_cliente) references clientes(id_cliente),
     foreign key (id_empleado) references empleados(id_empleado)
 );
--- poner la cantidad de cada producto
+
 create table if not exists ventas_productos(
     id_producto int not null, 
 	id_venta int not null, 
     id_venta_producto int primary key auto_increment,
+    cantidad int default 1,
     foreign key (id_producto) references productos(id_producto),
     foreign key (id_venta) references ventas(id_venta)
 );
@@ -178,7 +177,6 @@ create table if not exists ventas_productos_tallas(
     foreign key (id_venta_producto) references ventas_productos(id_venta_producto),
     foreign key (id_talla) references tallas(id_talla)
 );
-
 
 create table if not exists ventas_promocion(
     id_promocion int not null, 
@@ -202,7 +200,6 @@ create table if not exists categorias_productos(
     foreign key (id_producto) references productos(id_producto)
 );
 
--- tablas de promociones por tipos, clasificacion y genero
 create table if not exists promociones_clasificaciones (
     id_promocion int not null,
     id_clasificacion int not null,
@@ -224,7 +221,6 @@ create table if not exists promociones_tipos (
     foreign key (id_tipo) references tipos(id_tipo)
 );
 
--- tabla intermedia entre tallas y productos para tener en cuenta el stock
 create table if not exists productos_tallas (
     id_producto int not null,
     id_talla int not null,

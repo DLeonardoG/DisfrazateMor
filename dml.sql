@@ -277,7 +277,7 @@ insert into ventas_productos (id_producto, id_venta) values
 (1, 1),
 (2, 2),
 (3, 3),
-(4, 1);
+(3, 1);
 
 -- compras a proveedor
 
@@ -495,7 +495,8 @@ insert into promociones_tipos (id_promocion, id_tipo) values
 
 insert into ventas_promocion (id_promocion, id_venta) values 
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 3);
 
 
 
