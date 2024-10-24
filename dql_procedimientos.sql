@@ -117,6 +117,7 @@ delimiter $$
 create procedure eliminar_producto_inventario(p_id_producto int) 
 begin 
     declare producto_existente int; 
+	SET SQL_SAFE_UPDATES = 0; 
     select count(*) into producto_existente from productos where id_producto = p_id_producto; 
     if producto_existente = 0 then 
         select 'el producto no existe' as mensaje; 
@@ -129,6 +130,7 @@ begin
     delete from inventario where id_producto = p_id_producto; 
     delete from productos where id_producto = p_id_producto; 
     select 'producto eliminado exitosamente' as mensaje; 
+	SET SQL_SAFE_UPDATES = 1; 
 end $$
 delimiter ;
 call eliminar_producto_inventario(1); 

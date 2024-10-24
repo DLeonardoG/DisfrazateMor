@@ -1,4 +1,4 @@
--- usuario administrador con acceso total
+-- el administrador con acceso total
 create user 'admin'@'localhost' identified by 'password_admin';
 grant all privileges on disfrazateMor.* to 'admin'@'localhost' with grant option;
 
@@ -26,3 +26,5 @@ show grants for 'vendedor'@'localhost';
 show grants for 'encargado_proveedores'@'localhost';
 show grants for 'gerente'@'localhost';
 show grants for 'encargado_almacen'@'localhost';
+
+

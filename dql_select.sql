@@ -422,13 +422,16 @@ join categorias_productos on categorias.id_categoria = categorias_productos.id_c
 join inventario on categorias_productos.id_producto = inventario.id_producto 
 group by categorias.categoria;
 
--- 63. total de ventas por cliente
-select c.nombre as nombre_cliente, 
-       sum(v.total_venta) as total_compras
-from clientes c 
-join ventas v on c.id_cliente = v.id_cliente 
-group by c.id_cliente 
-order by total_ventas desc;
+-- 63. productos más vendidos y sus ingresos totales
+select p.nombre as nombre_producto, 
+       sum(vp.cantidad) as cantidad_total_vendida, 
+       sum(vp.cantidad * p.precio) as total_ingresos 
+from productos p 
+join ventas_productos vp on p.id_producto = vp.id_producto 
+join ventas v on vp.id_venta = v.id_venta 
+group by p.id_producto 
+order by cantidad_total_vendida desc 
+limit 10;
 
 -- 64. empleados que no realizaron ventas en el último mes.
 select empleados.nombre, empleados.apellido, empleados.celular

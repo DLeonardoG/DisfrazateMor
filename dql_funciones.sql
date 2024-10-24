@@ -211,7 +211,7 @@ begin
 end //
 
 delimiter ;
-select calcular_recargas(1000);
+select calcular_recargas(50);
 
 -- 11 calcular el costo operativo mensual por medio de los empleados
 drop function if exists costo_mensual_empleados;
