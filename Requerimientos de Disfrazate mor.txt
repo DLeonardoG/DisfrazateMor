@@ -97,6 +97,16 @@ se dividen todas las tareas 50/50
 
 ===================================================================
 
+readme
+roles
+corregir consultas
+corregir comentarios
+corregir fechas del dml
+subir la foto del Diagrama
+subir la documentados del uml con el html
+
+===================================================================
+
 el readme debe tener
 - Descripción del Proyecto: Explicación clara y concisa del proyecto "Tienda de disfraces" 
 (O el nombre que le hayan dado a su proyecto). Incluye el propósito de la base de datos y una descripción
